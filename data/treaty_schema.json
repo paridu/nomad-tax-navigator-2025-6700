@@ -1,0 +1,30 @@
+{
+  "treaty_id": "DTA-TH-DE-2024",
+  "countries": ["Thailand", "Germany"],
+  "effective_date": "1968-10-24",
+  "last_updated": "2024-01-01",
+  "clauses": [
+    {
+      "article": 4,
+      "title": "Resident",
+      "tie_breaker_order": [
+        "Permanent Home",
+        "Center of Vital Interests",
+        "Habitual Abode",
+        "Nationality",
+        "Mutual Agreement"
+      ]
+    },
+    {
+      "article": 7,
+      "title": "Business Profits",
+      "rules": "Taxable only in home country unless Permanent Establishment (PE) exists."
+    },
+    {
+      "article": 15,
+      "title": "Dependent Personal Services",
+      "threshold_days": 183,
+      "exception_conditions": ["Remuneration paid by non-resident employer", "Not borne by PE"]
+    }
+  ]
+}
