@@ -1,0 +1,16 @@
+graph TD
+    A[User Location & Income Data] --> B{Compliance Engine}
+    B --> C[Residency Analyzer]
+    B --> D[DTA Treaty Parser]
+    B --> E[Social Security Evaluator]
+    
+    C --> F[Knowledge Graph: OECD/UN Models]
+    D --> F
+    
+    F --> G[Compliance Compass API]
+    G --> H[Mobile App]
+    G --> I[Enterprise Dashboard]
+    G --> J[Tax Filing Export]
+    
+    style B fill:#f9f,stroke:#333,stroke-width:4px
+    style F fill:#00ff,stroke:#fff,stroke-width:2px,color:#fff
