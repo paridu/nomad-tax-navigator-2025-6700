@@ -1,0 +1,36 @@
+openapi: 3.0.0
+info:
+  title: Global Compliance Compass API
+  version: 1.0.0
+  description: API for automating cross-border tax compliance for digital nomads.
+paths:
+  /analyze-residency:
+    post:
+      summary: Determine tax residency status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId: {type: string}
+                countryCode: {type: string}
+                year: {type: integer}
+                travelLogs: 
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      entryDate: {type: string, format: date}
+                      exitDate: {type: string, format: date}
+      responses:
+        '200':
+          description: Residency analysis successful
+          content:
+            application/json:
+              example:
+                taxStatus: "POTENTIAL_RESIDENT"
+                thresholdReached: 183
+                currentDays: 142
+                remainingDays: 41
+                recommendation: "Review Article 4 of DTA between Home and Host country."
