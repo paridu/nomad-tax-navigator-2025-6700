@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  tax-engine:
+    build: ./services/tax-engine
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_URL=postgres://user:pass@db:5432/taxdb
+      - REDIS_URL=redis://cache:6379
+    depends_on:
+      - db
+      - cache
+
+  location-tracker:
+    build: ./services/location-tracker
+    ports:
+      - "8081:8081"
+    environment:
+      - TIMESCALE_URL=postgres://user:pass@timescale:5432/geo
+    depends_on:
+      - timescale
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: taxdb
+
+  timescale:
+    image: timescale/timescaledb:latest-pg15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: geo
+
+  cache:
+    image: redis:7-alpine
