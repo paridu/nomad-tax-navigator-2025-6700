@@ -1,0 +1,22 @@
+sources:
+  oecd:
+    name: "OECD iLibrary - Tax Treaties"
+    url: "https://www.oecd-ilibrary.org/taxation/treaties"
+    format: "pdf"
+    frequency: "monthly"
+  
+  th_revenue:
+    name: "Thailand Revenue Department"
+    url: "https://www.rd.go.th/english/766.html"
+    format: "html/table"
+    priority: 1
+
+  irs_dtas:
+    name: "US IRS United States Income Tax Treaties - A to Z"
+    url: "https://www.irs.gov/businesses/international-businesses/united-states-income-tax-treaties-a-to-z"
+    format: "html"
+    priority: 1
+
+mapping_logic:
+  residency_trigger_days: 183
+  default_currency: "USD"
