@@ -1,0 +1,55 @@
+openapi: 3.0.0
+info:
+  title: Global Compliance Compass API
+  description: API for managing cross-border tax residency and location tracking.
+  version: 1.0.0
+
+paths:
+  /v1/location/ping:
+    post:
+      summary: Report current location
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                lat: {type: number}
+                lon: {type: number}
+                timestamp: {type: string, format: date-time}
+                country_code: {type: string}
+      responses:
+        '200':
+          description: Location recorded and tax status updated.
+
+  /v1/tax/status:
+    get:
+      summary: Get current tax residency status across all visited countries
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  residency_alerts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TaxAlert'
+
+components:
+  schemas:
+    TaxAlert:
+      type: object
+      properties:
+        country_code: {type: string}
+        days_count: {type: integer}
+        risk_level: {type: string, enum: [LOW, MEDIUM, HIGH, CRITICAL]}
+        recommendation: {type: string}
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
