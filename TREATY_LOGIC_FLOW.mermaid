@@ -1,0 +1,20 @@
+graph TD
+    A[Start: Where is User?] --> B{Spent > 183 Days?};
+    B -- Yes --> C[Deemed Resident by Physical Presence];
+    B -- No --> D{Local Tie Test?};
+    
+    D -- Yes --> C;
+    D -- No --> E[Non-Resident Status];
+
+    C --> F{DTA Exists between Home & Current?};
+    F -- No --> G[Potential Double Taxation];
+    F -- Yes --> H[Apply Tie-Breaker Rules];
+
+    H --> I{Permanent Home Available?};
+    I -- Home in A only --> J[Resident of A];
+    I -- Home in Both/Neither --> K{Center of Vital Interests?};
+    
+    K -- Stronger Ties in B --> L[Resident of B];
+    K -- Indeterminate --> M[Habitual Abode Test];
+    
+    M --> N[Final Determination & Actionable Advice];
